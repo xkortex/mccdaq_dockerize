@@ -4,10 +4,13 @@ FROM ubuntu:16.04 as base_gcc
 WORKDIR /root
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt update
-RUN apt install -y \
+RUN apt-get update && \
+    apt-get install -y \
     curl \
     dirmngr \
     gnupg2 \
     lsb-release \
-    build-essential
+    build-essential \
+    autoconf \
+    && \
+    apt-get clean
