@@ -1,15 +1,15 @@
-TAGNAME = mcc_daq
+TAGNAME ?= mcc_daq
+DAQDEV ?= $(TAGNAME)
 
 .PHONY: build
-buildall:
+build:
 	docker build base_gcc -t base_gcc
 	docker build . -t $(TAGNAME)
 
 .PHONY: run
 run: 
 	docker run --rm -it \
-	--device=/dev/mcc_daq \
+	--device=$(shell readlink -f "/dev/$(DAQDEV)") \
 	--network=host \
-	mcc_daq
+	$(TAGNAME)
 
-docker run -it $(shell for dev in /dev/bus/usb/001/*; do echo -n "--device $dev:$dev "; done)  mcc_daq

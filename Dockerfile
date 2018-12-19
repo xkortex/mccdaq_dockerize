@@ -32,7 +32,8 @@ WORKDIR /root/mcc/Linux_Drivers-master
 # RUN cp 61-mcc.rules /etc/udev/rules.d/
 # RUN /sbin/udevadm control --reload
 WORKDIR USB/mcc-libusb
-RUN make -j4
+# making just the 2408 test because that is the only thing I need. 
+RUN make -j4 test-usb2408
 RUN make install
 # RUN ls
 # WORKDIR /root
