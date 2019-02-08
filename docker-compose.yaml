@@ -1,0 +1,20 @@
+---
+version: '3.7'
+services:
+  base_gcc:
+    container_name: base_gcc
+    build:
+      context: base_gcc
+      dockerfile: Dockerfile
+    image: base_gcc:latest
+    tty: true
+    command: ["bash"]
+  mcc_daq:
+    container_name: mcc_daq
+    build:
+      context: .
+      dockerfile: mcc_daq.docker
+    image: mcc_daq:latest
+    tty: true
+    command: ["bash"]
+...

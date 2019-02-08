@@ -22,7 +22,7 @@ RUN unzip -q mcc_drivers.zip -d mcc
 WORKDIR /root/hidapi-master
 RUN ./bootstrap
 RUN ./configure
-RUN make -j4
+RUN make -j`nproc`
 RUN make install
 
 
@@ -33,7 +33,7 @@ WORKDIR /root/mcc/Linux_Drivers-master
 # RUN /sbin/udevadm control --reload
 WORKDIR USB/mcc-libusb
 # making just the 2408 test because that is the only thing I need. 
-RUN make -j4 test-usb2408
+RUN make -j`nproc` test-usb2408
 RUN make install
 # RUN ls
 # WORKDIR /root
