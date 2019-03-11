@@ -11,6 +11,8 @@ services:
     command: ["bash"]
   mcc_daq:
     container_name: mcc_daq
+    depends_on:
+      - base_gcc
     build:
       context: .
       dockerfile: mcc_daq.docker
